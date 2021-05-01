@@ -11,14 +11,12 @@
 package bob
 
 import (
-	"fmt"
 	"unicode"
 )
 
 // Hey return phrases depending on the structure of the question.
 func Hey(remark string) string {
 	contents := NewContents(remark)
-	fmt.Println(contents)
 	// Check if no letters
 	if !contents.lower && !contents.upper && !contents.number && !contents.question {
 		return "Fine. Be that way!"
