@@ -1,5 +1,3 @@
-use std::cmp;
-
 #[derive(Debug)]
 pub struct HighScores{
     arr: Vec<u32>
@@ -39,10 +37,29 @@ impl HighScores {
 
     pub fn personal_top_three(&self) -> Vec<u32> {
         let n = self.arr.len();
-        let mut sorted = self.arr.clone();
-        sorted.sort();
-        sorted.reverse();
-        sorted.truncate(3);
-        sorted
+        if n < 3 {
+            if n <= 1 || (n == 2 && self.arr[0] >= self.arr[1]) {
+                return self.arr.clone();
+            }
+            return vec![self.arr[1], self.arr[0]];
+        }
+
+        let mut t = vec![0,0,0];
+        let mut tmp = 0;
+        for s in self.arr.iter() {
+            if *s > t[2] {
+                t[2] = *s;
+                if t[1] < t[2] {
+                    tmp = t[1]; t[1] = t[2]; t[2] = tmp;
+                }
+                if t[0] < t[1] {
+                    tmp = t[0]; t[0] = t[1]; t[1] = tmp;
+                }
+                if t[1] < t[2] {
+                    tmp = t[1]; t[1] = t[2]; t[2] = tmp;
+                }
+            }
+        }
+        t
     }
 }
