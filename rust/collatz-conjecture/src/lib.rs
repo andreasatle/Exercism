@@ -7,7 +7,7 @@
 //! # Example
 //! Starting with n = 12, the steps would be as follows:
 //! 
-//! ```
+//! ```comment
 //! 12, 6, 3, 10, 5, 16, 8, 4, 2, 1
 //! ```
 //! Resulting in 9 steps. So for input n = 12, the return value would be 9.
