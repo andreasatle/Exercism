@@ -1,10 +1,22 @@
-// PascalsTriangle contains the elements of Pascals triangle.
+//! Compute Pascal's triangle up to a given number of rows.
+//! 
+//! In Pascal's Triangle each number is computed by adding the numbers to the right and left of the current position in the previous row.
+//! ```comment
+//!      1
+//!     1 1
+//!    1 2 1
+//!   1 3 3 1
+//!  1 4 6 4 1
+//!  # ... etc
+//! ```
+
+/// Contains the elements of Pascals triangle.
 pub struct PascalsTriangle {
     rows: Vec<Vec<u32>>
 }
 
 impl PascalsTriangle {
-    // new creates a new instance of the struct PascalsTriangle.
+    /// Creates a new instance of the struct PascalsTriangle.
     pub fn new(row_count: u32) -> Self {
         let mut pascal = PascalsTriangle{rows: Vec::new()};
         
@@ -30,7 +42,7 @@ impl PascalsTriangle {
         pascal
     }
 
-    // rows returns a copy of the rows of Pascals triangle.
+    /// Returns a copy of the rows of Pascals triangle.
     pub fn rows(&self) -> Vec<Vec<u32>> {
         let mut out: Vec<Vec<u32>> = Vec::new();
         for row in &self.rows {
