@@ -1,10 +1,24 @@
-// The &'static here means the return type has a static lifetime.
-// This is a Rust feature that you don't need to worry about now.
+//! The classical introductory exercise. Just say "Hello, World!".
+//! 
+//! "Hello, World!" is the traditional first program for beginning programming in a new language or environment.
+//! 
+//! The objectives are simple:
+//! 
+//! Write a function that returns the string "Hello, World!".
+//! Run the test suite and make sure that it succeeds.
+//! Submit your solution and check it at the website.
+//! If everything goes well, you will be ready to fetch your first real exercise.
+//!
+//! # Examples
+//! ```
+//! use hello_world;
+//! let answer = hello_world::hello();
+//! 
+//! assert_eq!("Hello, World!", answer);
+//! ```
+//! 
+/// Returns the static str "Hello, World!"
 pub fn hello() -> &'static str {
     "Hello, World!"
 }
 
-#[test]
-fn test_output_from_hello() {
-    assert_eq!(hello(), "Hello, World!")
-}
