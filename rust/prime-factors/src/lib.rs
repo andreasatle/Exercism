@@ -1,3 +1,10 @@
+//! Compute the prime factors of a given natural number.
+//! 
+//! A prime number is only evenly divisible by itself and 1.
+//! 
+//! Note that 1 is not a prime number.
+
+/// Returns a vector with all primes up to n.
 pub fn factors(n: u64) -> Vec<u64> {
     let mut prime_factors = Vec::new();
     if n < 2 { // check whether there are any factors.
@@ -27,6 +34,7 @@ pub fn factors(n: u64) -> Vec<u64> {
     prime_factors
 }
 
+/// Computes the next prime, given a vector of primes.
 fn next_prime(prime: u64, primes: &[u64]) -> u64 {
     let mut p = prime + 1;
     loop {
@@ -37,6 +45,7 @@ fn next_prime(prime: u64, primes: &[u64]) -> u64 {
     }
 }
 
+/// Checks if a number is prime, given all primes smaller than or equal to the number.
 fn is_prime(p: u64, primes: &[u64]) -> bool {
     for prime in primes {
         if p % prime == 0 {
