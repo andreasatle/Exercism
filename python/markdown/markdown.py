@@ -1,18 +1,29 @@
+'''Refactor a Markdown parser.
+
+The markdown exercise is a refactoring exercise.
+There is code that parses a given string with Markdown syntax 
+and returns the associated HTML for that string. Even though 
+this code is confusingly written and hard to follow, somehow
+it works and all the tests are passing! Your challenge is to
+re-write this code to make it easier to read and maintain while
+still making sure that all the tests keep passing.'''
+
 import re
 
 
-def parse(markdown):
+def parse(markdown: str) -> str:
+    '''Markdown to html parser.'''
     html = ''
     in_list = False
     in_list_append = False
     lines = markdown.split('\n')
     for line in lines:
-        line = match_headers(line)
-        line, in_list, in_list_append = match_bullet(
+        line = _match_headers(line)
+        line, in_list, in_list_append = _match_bullet(
             line, in_list, in_list_append)
 
-        line = match_paragraph(line)
-        line = match_bold_and_italic(line)
+        line = _match_paragraph(line)
+        line = _match_bold_and_italic(line)
         if in_list_append:
             line = '</ul>' + line
             in_list_append = False
@@ -22,7 +33,7 @@ def parse(markdown):
     return html
 
 
-def match_headers(line):
+def _match_headers(line):
     if re.match('###### (.*)', line) is not None:
         line = '<h6>' + line[7:] + '</h6>'
     elif re.match('## (.*)', line) is not None:
@@ -32,10 +43,10 @@ def match_headers(line):
     return line
 
 
-def match_bullet(line, in_list, in_list_append):
+def _match_bullet(line, in_list, in_list_append):
     if bullet := re.match(r'\* (.*)', line):
         curr = bullet.group(1)
-        curr = match_bold_and_italic(curr)
+        curr = _match_bold_and_italic(curr)
         if not in_list:
             in_list = True
             line = '<ul><li>' + curr + '</li>'
@@ -48,7 +59,7 @@ def match_bullet(line, in_list, in_list_append):
     return line, in_list, in_list_append
 
 
-def match_bold_and_italic(curr):
+def _match_bold_and_italic(curr):
     if bold := re.match('(.*)__(.*)__(.*)', curr):
         curr = bold.group(1) + '<strong>' + \
             bold.group(2) + '</strong>' + bold.group(3)
@@ -59,7 +70,7 @@ def match_bold_and_italic(curr):
     return curr
 
 
-def match_paragraph(line):
+def _match_paragraph(line):
     if re.match('<h|<ul|<p|<li', line) is None:
         line = '<p>' + line + '</p>'
     return line
