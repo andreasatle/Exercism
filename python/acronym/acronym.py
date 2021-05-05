@@ -1,8 +1,14 @@
-# Remark: This is built on top of a previous exercise: word-count and could be rather heavily optimized.
+'''Convert a phrase to its acronym.
+
+Techies love their TLA (Three Letter Acronyms)!
+
+Help generate some jargon by writing a program that converts a long name
+like Portable Network Graphics to its acronym (PNG).
+'''
 
 
-def abbreviate(words):
-    # Make upper case and create list of chars
+def abbreviate(words: str) -> str:
+    '''Create and acronym from given words.'''
     chars = [ch for ch in words.upper()]
 
     n = len(chars)
