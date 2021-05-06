@@ -1,8 +1,15 @@
-//
-// This is only a SKELETON file for the 'Hello World' exercise. It's been provided as a
-// convenience to get you started writing code faster.
-//
+/**
+ * The classical introductory exercise. Just say "Hello, World!".
+ * "Hello, World!" is the traditional first program for beginning programming in a new language or environment.
+ * @file
+ * @author Andreas Atle, atle.andreas@gmail.com
+ */
 
+/**
+ * Generates the string "Hello, World!"
+ * @func
+ * @returns {string} "Hello, World!"
+ */
 export const hello = () => {
   return "Hello, World!";
 };
