@@ -1,13 +1,25 @@
-//
-// This is only a SKELETON file for the 'Matrix' exercise. It's been provided as a
-// convenience to get you started writing code faster.
-//
+/**
+ * Given a string representing a matrix of numbers, return the rows and columns
+ * of that matrix.
+ * @file
+ * @author Andreas Atle, atle.andreas@gmail.com
+ */
 
+/**
+ * Class representation of matrix.
+ * @class 
+ */
 export class Matrix {
   matrix;
   transpose;
+  
+  /** 
+   * @constructor
+   * @param {string} matrix String representation of a matrix.
+   */
   constructor(matrix) {
     this.matrix = [];
+    // Alternative way of writing a for-loop in js.
     matrix.split('\n').forEach((line, i) => {
       let row = [];
       line.split(' ').forEach((val, j) => {
@@ -15,6 +27,8 @@ export class Matrix {
       })
       this.matrix.push(row);
     })
+
+    // Compute the transpose of the matrix.
     this.transpose = [];
 
     for (let j = 0; j < this.matrix[0].length; j++) {
@@ -28,11 +42,23 @@ export class Matrix {
     }
   }
 
+  /**
+   * Get the rows of the matrix.
+   * @public
+   * @method
+   * @returns {number[][]}
+   */
   get rows() {
     return Object.assign({}, this.matrix);
   }
 
-  get columns() {
+  /**
+   * Get the columns of the matrix.
+   * @public
+   * @method
+   * @returns {number[][]}
+   */
+   get columns() {
     return Object.assign({}, this.transpose)
   }
 }
