@@ -39,6 +39,7 @@ func Hey(remark string) string {
 	return "Whatever."
 }
 
+// Struct keeping track of which kind of characters exist in a sentence.
 type Contents struct {
 	upper    bool
 	lower    bool
@@ -46,6 +47,7 @@ type Contents struct {
 	number   bool
 }
 
+// Create a new instance of a Content, given a remark.
 func NewContents(remark string) *Contents {
 	contents := &Contents{}
 	s := filter(remark)
@@ -68,6 +70,7 @@ func NewContents(remark string) *Contents {
 	return contents
 }
 
+// Keep all letters, numbers and question-marks in the string.
 func filter(s string) string {
 	out := []rune{}
 	for _, r := range s {
