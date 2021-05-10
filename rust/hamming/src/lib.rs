@@ -11,24 +11,12 @@
 /// This distance is defined as the count of pair-wise characters
 /// that differ.
 pub fn hamming_distance(s1: &str, s2: &str) -> Option<usize> {
-    let mut distance: usize = 0;
-    let mut iter1 = s1.chars();
-    let mut iter2 = s2.chars();
-
-    let mut ch1 = iter1.next();
-    let mut ch2 = iter2.next();
-
-    while ch1 != None || ch2 != None {
-        match ch1.zip(ch2) {
-            Some((x,y)) => {
-                if x != y {
-                    distance += 1;
-                }
-            },
-            None => {return None;},
-        }
-        ch1 = iter1.next();
-        ch2 = iter2.next();
+    if s1.len() != s2.len() {
+        return None;
     }
-    Some(distance)
+
+    Some(s1.chars()
+        .zip(s2.chars())
+        .filter(|(a, b)| a != b)
+        .count())
 }
