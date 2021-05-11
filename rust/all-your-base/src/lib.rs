@@ -61,7 +61,7 @@ pub fn convert(number: &[u32], from_base: u32, to_base: u32) -> Result<Vec<u32>,
         num += e;
     }
 
-    // Results will be computed backwards.
+    // Results will be computed backwards
     let mut converted_number = Vec::new();
     while num > 0 {
         converted_number.push(num%to_base);
@@ -72,6 +72,7 @@ pub fn convert(number: &[u32], from_base: u32, to_base: u32) -> Result<Vec<u32>,
         converted_number.push(0);
     }
     
-    // Reverse the number before returning. Somewhat weird syntax...
-    Ok(converted_number.into_iter().rev().collect())
+    // Reverse the number before returning.
+    converted_number.reverse();
+    Ok(converted_number)
 }
