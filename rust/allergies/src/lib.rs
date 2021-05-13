@@ -32,16 +32,17 @@ pub struct Allergies {
 }
 
 /// Definition of the different allergies.
-#[derive(Debug, PartialEq)]
+/// Remark: Clone and Copy are necessary to use the enum as an u32 (of some reason).
+#[derive(Debug, PartialEq, Clone, Copy)]
 pub enum Allergen {
-    Eggs,
-    Peanuts,
-    Shellfish,
-    Strawberries,
-    Tomatoes,
-    Chocolate,
-    Pollen,
-    Cats,
+    Eggs = 1 << 0,
+    Peanuts = 1 << 1,
+    Shellfish = 1 << 2,
+    Strawberries = 1 << 3,
+    Tomatoes = 1 << 4,
+    Chocolate = 1 << 5,
+    Pollen = 1 << 6,
+    Cats = 1 << 7,
 }
 
 impl Allergies {
@@ -52,34 +53,25 @@ impl Allergies {
 
     /// Check if allergen is contained in Allergies.
     pub fn is_allergic_to(&self, allergen: &Allergen) -> bool {
-        match allergen {
-            Allergen::Eggs => self.score & 1 != 0,
-            Allergen::Peanuts => self.score & 2 != 0,
-            Allergen::Shellfish => self.score & 4 != 0,
-            Allergen::Strawberries => self.score & 8 != 0,
-            Allergen::Tomatoes => self.score & 16 != 0,
-            Allergen::Chocolate => self.score & 32 != 0,
-            Allergen::Pollen => self.score & 64 != 0,
-            Allergen::Cats => self.score & 128 != 0,
-        }
+        self.score & (*allergen as u32) != 0
     }
 
     /// List all the allergies of the current Allergies.
     pub fn allergies(&self) -> Vec<Allergen> {
         let allergens_with_masks = vec![
-            (Allergen::Eggs, 1),
-            (Allergen::Peanuts, 2),
-            (Allergen::Shellfish, 4),
-            (Allergen::Strawberries, 8),
-            (Allergen::Tomatoes, 16),
-            (Allergen::Chocolate, 32),
-            (Allergen::Pollen, 64),
-            (Allergen::Cats, 128),
+            Allergen::Eggs,
+            Allergen::Peanuts,
+            Allergen::Shellfish,
+            Allergen::Strawberries,
+            Allergen::Tomatoes,
+            Allergen::Chocolate,
+            Allergen::Pollen,
+            Allergen::Cats,
             ];
 
             let mut allergens = Vec::new();
-            for (allergen,mask) in allergens_with_masks {
-            if self.score & mask != 0 {
+            for allergen in allergens_with_masks {
+            if self.score & (allergen as u32) != 0 {
                 allergens.push(allergen)
             }    
         }
