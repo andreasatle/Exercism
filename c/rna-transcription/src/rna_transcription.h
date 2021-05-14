@@ -20,6 +20,7 @@
 #define RNA_TRANSCRIPTION_H
 
 #include <stdlib.h>
+#include <string.h>
 
 // Find the rna strand for the given dna strand.
 char *to_rna(const char *dna);
