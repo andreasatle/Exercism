@@ -22,10 +22,10 @@ func Convert(num int) string {
 		out = "Pling"
 	}
 	if num%5 == 0 {
-		out = out + "Plang"
+		out += "Plang"
 	}
 	if num%7 == 0 {
-		out = out + "Plong"
+		out += "Plong"
 	}
 	if len(out) == 0 {
 		out = strconv.Itoa(num)
