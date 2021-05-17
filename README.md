@@ -7,7 +7,9 @@ I found this site when I was looking out for programming examples for Rust, that
 I use this to keep up to date with languages that I'm not currently working with, as reinforcement learning.
 
 My current tracks are:
-* Go
-* Javascript (node.js)
-* Python
 * Rust
+* Python
+* Javascript (node.js)
+* Go
+* C
+* Bash
